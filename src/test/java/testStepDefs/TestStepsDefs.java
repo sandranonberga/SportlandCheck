@@ -32,17 +32,14 @@ public class TestStepsDefs {
     public void get_produkti_btn(String products) {
         homePage.clickOnProdukti(products);
 //        homePage = new HomePage(baseFunc);
+        produktiPage = new ProduktiPage(baseFunc);
     }
 
-    @When("we push zeni button")
-    public void get_zeni_btn(String zeni) {
-        produktiPage.clickOnZeni(zeni);
-//        produktiPage = new ProduktiPage(zeni);
-    }
-
-    @When("we push futbols button")
-    public void get_futbols_btn(String futbols) {
-        produktiPage.clickOnFutbols(futbols);
+    @When("we push {string} category, {string} subcategory for {string} product")
+    public void get_futbols_subcategory(String zeni, String apavi, String futbols) {
+        produktiPage.clickOnFutbols(zeni, apavi, futbols);
 //        produktiPage = new ProduktiPage(baseFunc);
     }
+
+
 }

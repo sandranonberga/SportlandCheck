@@ -11,33 +11,56 @@ public class ProduktiPage {
     private BaseFunc baseFunc;
 
     private final By TOPMENU = By.xpath(".//ul[@id='menu-product-menu1']/li");
-    private final By FUTBOLS = By.xpath(".//ul[@class='wp-megamenu-sub-menu']");
+
 
     public ProduktiPage(BaseFunc baseFunc) {
         this.baseFunc = baseFunc;
     }
 
-    /*Clicks on ZĒNI tab*/
-    public void clickOnZeni(String zeniName) {
-        baseFunc.waitForElement(TOPMENU);
-        List<WebElement> topList = baseFunc.getAllElements(TOPMENU);
-        for (int i = 0; i < topList.size(); i++) {
-            if (topList.get(i).getText().contains(zeniName)) {
-                topList.get(i).click();
+    public void clickOnFutbols(String category, String subCategory, String product) {
+        List<WebElement> categoryList = baseFunc.getAllElements( TOPMENU );
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get( i ).getText().contains( category )) {
+                categoryList.get( i ).click();
+                List<WebElement> subCategoryList = categoryList.get( i ).findElements( By.tagName( "a" ) );
+                for (int j = 0; j < subCategoryList.size(); j++) {
+                    if (subCategoryList.get( j ).getText().equals( subCategory )) {
+                        for (int k = j + 1; k < subCategoryList.size(); k++) {
+                            if (subCategoryList.get( k ).getText().equals( product )) {
+                                subCategoryList.get( k ).click();
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
                 break;
             }
         }
     }
 
-    /*Clicks on FUTBOLS tab, under ZĒNI section*/
-    public void clickOnFutbols(String futbolsTab) {
-        baseFunc.waitForElement(FUTBOLS);
-        List<WebElement> sectionList = baseFunc.getAllElements(FUTBOLS);
-        for (int i = 0; i < sectionList.size(); i++) {
-            if (sectionList.get(i).getText().contains(futbolsTab)) {
-                sectionList.get(i).click();
-                break;
-            }
-        }
-    }
+    /*Clicks on ZĒNI tab*/
+//    public void clickOnFutbols(String zeniName, String apavi, String futbols) {
+//        baseFunc.waitForElement(TOPMENU);
+//        List<WebElement> topList = baseFunc.getAllElements(TOPMENU);
+//        for (int i = 0; i < topList.size(); i++) {
+//            if (topList.get(i).getText().equals(zeniName)) {
+//                topList.get(i).click();
+//                List<WebElement> allProducts = baseFunc.getAllElements(By.tagName("a"));
+//                for (int j = 0; j < allProducts.size(); j++) {
+//                    if(allProducts.get(j).getText().equals(apavi)) {
+//                        for (int k = j + 1; k < allProducts.size(); k++) {
+//                            if (allProducts.get(k).getText().equals(futbols))
+//                                allProducts.get(k).click();
+//                            break;
+//                        }
+//                    }
+//                    break;
+//                }
+//            }
+//            break;
+//        }
+//    }
+
+
 }
