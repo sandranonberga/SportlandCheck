@@ -2,6 +2,7 @@ package testStepDefs;
 
 import baseFunc.BaseFunc;
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.And;
 import pages.FutbolsPage;
@@ -41,5 +42,18 @@ public class TestStepsDefs {
 //        produktiPage = new ProduktiPage(baseFunc);
     }
 
+    @When("sort by {string}")
+    public void select_izpardosana(String izpardosana) {
+        produktiPage.selectIzpardosana(izpardosana);
+    }
 
+    @Then("check that all items are on sale")
+    public void check_sale() {
+        produktiPage.checkSale();
+    }
+
+    @When("select brand")
+    public void select_nike() {
+        produktiPage.clickBrand();
+    }
 }

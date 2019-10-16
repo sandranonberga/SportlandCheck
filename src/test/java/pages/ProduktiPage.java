@@ -1,6 +1,7 @@
 package pages;
 
 import baseFunc.BaseFunc;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -11,7 +12,10 @@ public class ProduktiPage {
     private BaseFunc baseFunc;
 
     private final By TOPMENU = By.xpath(".//ul[@id='menu-product-menu1']/li");
-
+    private final By SELECTOR = By.xpath(".//div[@class='spodb-filter__select']/select/option");
+    private final By ALLITEMS = By.xpath(".//p[@class='spodb-product-card__title']");
+    private final By SALEITEMS = By.xpath(".//p[@class='spodb-product-card__percentage']");
+    private final By NIKE = By.xpath(".//input[@id='85']");
 
     public ProduktiPage(BaseFunc baseFunc) {
         this.baseFunc = baseFunc;
@@ -39,28 +43,29 @@ public class ProduktiPage {
         }
     }
 
-    /*Clicks on ZĒNI tab*/
-//    public void clickOnFutbols(String zeniName, String apavi, String futbols) {
-//        baseFunc.waitForElement(TOPMENU);
-//        List<WebElement> topList = baseFunc.getAllElements(TOPMENU);
-//        for (int i = 0; i < topList.size(); i++) {
-//            if (topList.get(i).getText().equals(zeniName)) {
-//                topList.get(i).click();
-//                List<WebElement> allProducts = baseFunc.getAllElements(By.tagName("a"));
-//                for (int j = 0; j < allProducts.size(); j++) {
-//                    if(allProducts.get(j).getText().equals(apavi)) {
-//                        for (int k = j + 1; k < allProducts.size(); k++) {
-//                            if (allProducts.get(k).getText().equals(futbols))
-//                                allProducts.get(k).click();
-//                            break;
-//                        }
-//                    }
-//                    break;
-//                }
-//            }
-//            break;
-//        }
-//    }
+    public void selectIzpardosana (String izpardosana) {
+        baseFunc.waitForElement(SELECTOR);
+        List<WebElement> izpardosanaSelect = baseFunc.getAllElements(SELECTOR);
+        for (int i = 0; i < izpardosanaSelect.size(); i++) {
+            if(izpardosanaSelect.get(i).getText().contains(izpardosana)) {
+                izpardosanaSelect.get(i).click();
+                break;
+            }
+        }
+    }
 
+    public void checkSale () {
+        List<WebElement> visiProdukti = baseFunc.getAllElements(ALLITEMS);
+        List<WebElement> izpardosanasProd = baseFunc.getAllElements(SALEITEMS);
+        Assertions.assertTrue(visiProdukti.size() == izpardosanasProd.size(), "Not all products are on sale");
+    }
+
+    public void clickBrand() {
+        baseFunc.getElement(NIKE).click();
+    }
+
+    public void checkBrand() {
+
+    }
 
 }
