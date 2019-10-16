@@ -15,23 +15,24 @@ public class ProduktiPage {
     private final By SELECTOR = By.xpath(".//div[@class='spodb-filter__select']/select/option");
     private final By ALLITEMS = By.xpath(".//p[@class='spodb-product-card__title']");
     private final By SALEITEMS = By.xpath(".//p[@class='spodb-product-card__percentage']");
-    private final By NIKE = By.xpath(".//input[@id='85']");
+    private final By NIKE = By.xpath(".//label[@for='85']");
+//    private final By BRANDEDITEMS = By.xpath("");
 
     public ProduktiPage(BaseFunc baseFunc) {
         this.baseFunc = baseFunc;
     }
 
     public void clickOnFutbols(String category, String subCategory, String product) {
-        List<WebElement> categoryList = baseFunc.getAllElements( TOPMENU );
+        List<WebElement> categoryList = baseFunc.getAllElements(TOPMENU);
         for (int i = 0; i < categoryList.size(); i++) {
-            if (categoryList.get( i ).getText().contains( category )) {
-                categoryList.get( i ).click();
-                List<WebElement> subCategoryList = categoryList.get( i ).findElements( By.tagName( "a" ) );
+            if (categoryList.get(i).getText().contains(category)) {
+                categoryList.get(i).click();
+                List<WebElement> subCategoryList = categoryList.get(i).findElements(By.tagName("a"));
                 for (int j = 0; j < subCategoryList.size(); j++) {
-                    if (subCategoryList.get( j ).getText().equals( subCategory )) {
+                    if (subCategoryList.get( j ).getText().equals(subCategory)) {
                         for (int k = j + 1; k < subCategoryList.size(); k++) {
-                            if (subCategoryList.get( k ).getText().equals( product )) {
-                                subCategoryList.get( k ).click();
+                            if (subCategoryList.get(k).getText().equals(product)) {
+                                subCategoryList.get(k).click();
                                 break;
                             }
                         }
@@ -64,10 +65,10 @@ public class ProduktiPage {
         baseFunc.getElement(NIKE).click();
     }
 
-    public void checkBrand() {
-        List<WebElement> visiProdukti = baseFunc.getAllElements(ALLITEMS);
-        List<WebElement> brandedProdukti = baseFunc.getAllElements(NIKE);
-        Assertions.assertTrue(visiProdukti.size() == brandedProdukti.size(), "Not all products have correct brand");
-    }
+//    public void checkBrand() {
+//        List<WebElement> visiProdukti = baseFunc.getAllElements(ALLITEMS);
+//        List<WebElement> brandedProdukti = baseFunc.getAllElements(NIKE);
+//        Assertions.assertTrue(visiProdukti.size() == brandedProdukti.size(), "Not all products have correct brand");
+//    }
 
 }

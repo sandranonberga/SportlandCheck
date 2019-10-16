@@ -52,13 +52,14 @@ public class TestStepsDefs {
         produktiPage.checkSale();
     }
 
-    @When("select brand")
+    @Then("select brand")
     public void select_nike() {
         produktiPage.clickBrand();
     }
 
-    @Then("check that all items has correct brand")
-    public void check_brand() {
-        produktiPage.checkBrand();
-    }
+
+//    @Then("check that all items has correct brand")
+//    public void check_brand() {
+//        produktiPage.checkBrand();
+//    }
 }
