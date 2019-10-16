@@ -65,7 +65,9 @@ public class ProduktiPage {
     }
 
     public void checkBrand() {
-
+        List<WebElement> visiProdukti = baseFunc.getAllElements(ALLITEMS);
+        List<WebElement> brandedProdukti = baseFunc.getAllElements(NIKE);
+        Assertions.assertTrue(visiProdukti.size() == brandedProdukti.size(), "Not all products have correct brand");
     }
 
 }

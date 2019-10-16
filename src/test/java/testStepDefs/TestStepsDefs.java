@@ -56,4 +56,9 @@ public class TestStepsDefs {
     public void select_nike() {
         produktiPage.clickBrand();
     }
+
+    @Then("check that all items has correct brand")
+    public void check_brand() {
+        produktiPage.checkBrand();
+    }
 }

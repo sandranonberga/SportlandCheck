@@ -8,3 +8,4 @@ Feature: sportland site test
     And sort by "Izpārdošana"
     Then check that all items are on sale
     And select brand;
+    Then check that all items has correct brand
